@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+echo "Starting mongo"
+mongod 2>&1 >> /usr/local/var/log/cube/db.log &
+echo "Booting collector"
+node bin/collector.js 2>&1 >> /usr/local/var/log/cube/collector.log &
+echo "Booting evaluator"
+node bin/evaluator.js 2>&1 >> /usr/local/var/log/cube/evaluator.log &
+echo "Cube should be ready now"
